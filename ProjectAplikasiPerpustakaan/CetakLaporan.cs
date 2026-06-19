@@ -2,130 +2,170 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+
 namespace ProjectAplikasiPerpustakaan
 {
     public partial class CetakLaporan : Form
     {
-        private readonly string connectionString =
-        "Data Source=NAUFAL\\NZO2;Initial Catalog=db_perpustakaan;Integrated Security=True";
-        private DataTable dtLaporan;
+        static string connectionString =
+            "Data Source=NAUFAL\\NZO2;Initial Catalog=db_perpustakaan;Integrated Security=True";
+
         private BindingSource bsLaporan = new BindingSource();
+        private DataTable dtLaporan;
+
         public CetakLaporan()
         {
             InitializeComponent();
         }
+
         private void CetakLaporan_Load(object sender, EventArgs e)
         {
-            bindingNavigator1.BindingSource = bsLaporan; 
-
+            bindingNavigator1.BindingSource = bsLaporan;
             bsLaporan.PositionChanged += bsLaporan_PositionChanged;
 
-            LoadDataLaporan();
+            dtpTanggalDipinjam.Format = DateTimePickerFormat.Custom;
+            dtpTanggalDipinjam.CustomFormat = "dd MMMM yyyy";
+            dtpTanggalDipinjam.ShowUpDown = false;
+            dtpTanggalDipinjam.MinDate = new DateTime(2000, 1, 1);
+            dtpTanggalDipinjam.MaxDate = DateTime.Now.AddYears(10);
+
+            // ✅ Pasang event SETELAH setup selesai
+            txtCari.TextChanged += TxtCari_TextChanged;
+            dtpTanggalDipinjam.ValueChanged += DtpTanggalDipinjam_ValueChanged;
+
+            // Load awal tanpa filter tanggal
+            LoadDataLaporan();  // keyword=null, tanggal=null → semua data tampil
         }
 
+        private void TxtCari_TextChanged(object sender, EventArgs e)
+        {
+            LoadDataLaporan(txtCari.Text.Trim(), null); // null dulu
+        }
+
+        private void DtpTanggalDipinjam_ValueChanged(object sender, EventArgs e)
+        {
+            LoadDataLaporan(txtCari.Text.Trim(), dtpTanggalDipinjam.Value);
+        }
 
         private void bsLaporan_PositionChanged(object sender, EventArgs e)
         {
-            if (dgvLaporan.Rows.Count > 0)
+            // ✅ Tambah pengecekan Position valid
+            if (dgvLaporan.Rows.Count > 0
+                && bsLaporan.Position >= 0
+                && bsLaporan.Position < dgvLaporan.Rows.Count)
             {
                 dgvLaporan.ClearSelection();
                 dgvLaporan.Rows[bsLaporan.Position].Selected = true;
             }
         }
 
-        // ================== LOAD DATA PENGEMBALIAN ==================
-        private void LoadDataLaporan()
+        // ================== LOAD DATA DARI STORED PROCEDURE ==================
+        private void LoadDataLaporan(string keyword = null, DateTime? tanggal = null)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-
-                    string query = "SELECT * FROM vw_LaporanPeminjaman ORDER BY id_peminjaman DESC";
-
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(query, conn))
+                    using (SqlCommand cmd = new SqlCommand("sp_Report", conn))
                     {
-                        dtLaporan = new DataTable();
-                        adapter.Fill(dtLaporan);
-                        bsLaporan.DataSource = dtLaporan;
-                        dgvLaporan.DataSource = bsLaporan;
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                        if (dgvLaporan.Columns.Count > 0)
+                        // Ganti baris AddWithValue sebelumnya dengan ini:
+
+                        // Misal @inStatus itu VARCHAR
+                        cmd.Parameters.Add(new SqlParameter("@inStatus", SqlDbType.VarChar) { Value = DBNull.Value });
+
+                        // Misal @inTahun itu INT atau VARCHAR (sesuaikan dengan isi Stored Procedure)
+                        cmd.Parameters.Add(new SqlParameter("@inTahun", SqlDbType.Int) { Value = DBNull.Value });
+
+                        // Parameter Keyword
+                        cmd.Parameters.AddWithValue("@Keyword", (object)keyword ?? DBNull.Value);
+
+                        // === PERBAIKAN UTAMA ===
+                        SqlParameter paramTanggal = new SqlParameter("@TanggalDipinjam", SqlDbType.Date);
+                        paramTanggal.Value = (object)tanggal?.Date ?? DBNull.Value;
+                        cmd.Parameters.Add(paramTanggal);
+
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                         {
-                            if (dgvLaporan.Columns["kode_buku"] != null)
-                                dgvLaporan.Columns["kode_buku"].Visible = false;
+                            dtLaporan = new DataTable();
+                            dtLaporan.TableName = "LaporanPeminjaman";
+                            adapter.Fill(dtLaporan);
 
-                            dgvLaporan.Columns["nama_pengunjung"].HeaderText = "Nama Pengunjung";
-                            dgvLaporan.Columns["judul_buku"].HeaderText = "Judul Buku";
-                            dgvLaporan.Columns["tanggal_pinjam"].HeaderText = "Tanggal Pinjam";
-                            dgvLaporan.Columns["tanggal_kembali"].HeaderText = "Tanggal Kembali";
-                            dgvLaporan.Columns["kondisi_buku"].HeaderText = "Kondisi Buku";
-                            dgvLaporan.Columns["denda"].HeaderText = "Denda (Rp)";
-                            dgvLaporan.Columns["status"].HeaderText = "Status";
-                            dgvLaporan.Columns["catatan"].HeaderText = "Catatan";
+                            bsLaporan.DataSource = dtLaporan;
+                            dgvLaporan.DataSource = bsLaporan;
 
-                            dgvLaporan.Columns["tanggal_pinjam"].DefaultCellStyle.Format = "dd MMM yyyy";
-                            dgvLaporan.Columns["tanggal_kembali"].DefaultCellStyle.Format = "dd MMM yyyy";
+                            // Format kolom ...
+                            if (dgvLaporan.Columns.Count > 0)
+                            {
+                                // kode format kolom kamu tetap sama
+                                dgvLaporan.Columns["idpeminjaman"].HeaderText = "ID Peminjaman";
+                                dgvLaporan.Columns["namalengkap"].HeaderText = "Nama Lengkap";
+                                dgvLaporan.Columns["judulbuku"].HeaderText = "Judul Buku";
+                                dgvLaporan.Columns["kodebuku"].HeaderText = "Kode Buku";
+                                dgvLaporan.Columns["tanggaldipinjam"].HeaderText = "Tanggal Dipinjam";
+                                dgvLaporan.Columns["tanggalkembali"].HeaderText = "Tanggal Kembali";
+                                dgvLaporan.Columns["kondisibuku"].HeaderText = "Kondisi Buku";
+                                dgvLaporan.Columns["status"].HeaderText = "Status";
 
-                            dgvLaporan.Columns["denda"].DefaultCellStyle.Format = "N0";
-                            dgvLaporan.Columns["denda"].DefaultCellStyle.Alignment =
-                                DataGridViewContentAlignment.MiddleRight;
+                                dgvLaporan.Columns["tanggaldipinjam"].DefaultCellStyle.Format = "dd MMM yyyy";
+                                dgvLaporan.Columns["tanggalkembali"].DefaultCellStyle.Format = "dd MMM yyyy";
 
-                            dgvLaporan.AutoSizeColumnsMode =
-                                DataGridViewAutoSizeColumnsMode.AllCells;
-
-                            dgvLaporan.Columns["judul_buku"].AutoSizeMode =
-                                DataGridViewAutoSizeColumnMode.Fill;
-                        }
-
-                        if (dtLaporan.Rows.Count == 0)
-                        {
-                            MessageBox.Show(
-                                "Belum ada data laporan.",
-                                "Informasi",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information);
+                                dgvLaporan.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                                dgvLaporan.Columns["judulbuku"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                            }
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    "Terjadi kesalahan saat memuat data:\n" + ex.Message,
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-        }
-        // ================== TOMBOL ==================
-        private void btnCetak_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-
-                TotalLaporan formTotal = new TotalLaporan();
-                formTotal.ShowDialog();   // Menggunakan ShowDialog agar modal (lebih rapi)
-                // Atau gunakan formTotal.Show(); jika ingin non-modal
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Gagal membuka form Total Laporan:\n" + ex.Message,
+                MessageBox.Show("Terjadi kesalahan saat memuat data:\n" + ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        // ================== TOMBOL ==================
+        private void btnCetak_Click_1(object sender, EventArgs e)
+        {
+            if (dtLaporan == null || dtLaporan.Rows.Count == 0)
+            {
+                MessageBox.Show("Tidak ada data untuk dicetak!", "Peringatan",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // ✅ Kirim dtLaporan langsung, tidak perlu query ulang
+            FormCrystalLaporan frm = new FormCrystalLaporan(dtLaporan);
+            frm.ShowDialog();
+        }
+
         private void btnRefresh_Click_1(object sender, EventArgs e)
         {
-            LoadDataLaporan();
+            LoadDataLaporan();   // refresh semua data
         }
+
         private void btnTutup_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
         private void btnKembali_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            string keyword = txtCari.Text.Trim();
+
+            // Hanya filter tanggal kalau user memang mau filter
+            // Misal: tambahkan CheckBox cbFilterTanggal di form
+            DateTime? tanggal = null; // atau: cbFilterTanggal.Checked ? dtpTanggalDipinjam.Value : (DateTime?)null
+
+            LoadDataLaporan(keyword, tanggal);
+            btnCetak.Enabled = (dtLaporan?.Rows.Count > 0);
         }
     }
 }
