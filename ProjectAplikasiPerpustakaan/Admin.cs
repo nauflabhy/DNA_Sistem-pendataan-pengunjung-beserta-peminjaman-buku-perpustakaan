@@ -2,6 +2,8 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using ExcelDataReader;
+using System.IO;
 
 namespace ProjectAplikasiPerpustakaan
 {
@@ -426,6 +428,127 @@ namespace ProjectAplikasiPerpustakaan
             catch (Exception ex)
             {
                 MessageBox.Show("Gagal restore:\n" + ex.Message);
+            }
+        }
+
+        private void btnImpExcel_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog { Filter = "Excel Workbook|*.xlsx" })
+            {
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = ofd.FileName;
+                    using (var stream = File.Open(filePath, FileMode.Open, FileAccess.Read))
+                    {
+                        using (var reader = ExcelReaderFactory.CreateReader(stream))
+                        {
+                            var result = reader.AsDataSet(new ExcelDataSetConfiguration()
+                            {
+                                ConfigureDataTable = (_) => new ExcelDataTableConfiguration()
+                                {
+                                    UseHeaderRow = true
+                                }
+                            });
+
+                            DataTable dt = result.Tables[0];
+                            dataGridView1.DataSource = dt;
+                            dataGridView1.Enabled = false;
+
+                            // Nonaktifkan tombol lain saat preview
+                            btnImpDb.Enabled = true;
+                            btnTambahBuku.Enabled = false;
+                            btnEditBuku.Enabled = false;
+                            btnHapusBuku.Enabled = false;
+
+                            MessageBox.Show($"Preview berhasil! Total {dt.Rows.Count} data siap diimport.",
+                                "Preview Excel", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void btnImpDb_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable dt = (DataTable)dataGridView1.DataSource;
+
+                if (dt == null || dt.Rows.Count == 0)
+                {
+                    MessageBox.Show("Tidak ada data untuk diimport.", "Peringatan",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int sukses = 0;
+                int gagal = 0;
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        try
+                        {
+                            string kodeBuku = row["kode_buku"].ToString().Trim();
+                            string judul = row["judul"].ToString().Trim();
+                            string pengarang = row["pengarang"].ToString().Trim();
+                            string penerbit = row["penerbit"].ToString().Trim();
+                            string kategori = row["kategori"].ToString().Trim();
+                            string lokasi = row["lokasi"].ToString().Trim();
+
+                            if (string.IsNullOrEmpty(kodeBuku) || string.IsNullOrEmpty(judul))
+                            {
+                                gagal++;
+                                continue;
+                            }
+
+                            if (!int.TryParse(row["tahun_terbit"].ToString(), out int tahun)) { gagal++; continue; }
+                            if (!int.TryParse(row["stok_tersedia"].ToString(), out int stok)) { gagal++; continue; }
+
+                            string query = @"
+                        IF NOT EXISTS (SELECT 1 FROM BUKU WHERE kode_buku = @KodeBuku)
+                        BEGIN
+                            INSERT INTO BUKU (kode_buku, judul, pengarang, penerbit, tahun_terbit, kategori, stok_tersedia, lokasi)
+                            VALUES (@KodeBuku, @Judul, @Pengarang, @Penerbit, @Tahun, @Kategori, @Stok, @Lokasi)
+                        END";
+
+                            using (SqlCommand cmd = new SqlCommand(query, conn))
+                            {
+                                cmd.Parameters.AddWithValue("@KodeBuku", kodeBuku);
+                                cmd.Parameters.AddWithValue("@Judul", judul);
+                                cmd.Parameters.AddWithValue("@Pengarang", pengarang);
+                                cmd.Parameters.AddWithValue("@Penerbit", penerbit);
+                                cmd.Parameters.AddWithValue("@Tahun", tahun);
+                                cmd.Parameters.AddWithValue("@Kategori", kategori);
+                                cmd.Parameters.AddWithValue("@Stok", stok);
+                                cmd.Parameters.AddWithValue("@Lokasi", lokasi);
+                                cmd.ExecuteNonQuery();
+                                sukses++;
+                            }
+                        }
+                        catch { gagal++; }
+                    }
+                }
+
+                MessageBox.Show($"Import selesai!\nBerhasil: {sukses}\nGagal/Skip: {gagal}",
+                    "Hasil Import", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // ✅ Kembalikan ke mode normal
+                dataGridView1.Enabled = true;
+                btnTambahBuku.Enabled = true;
+                btnEditBuku.Enabled = true;
+                btnHapusBuku.Enabled = true;
+                btnImpDb.Enabled = false;
+
+                LoadDataBuku(); // refresh grid
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Gagal import:\n" + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
