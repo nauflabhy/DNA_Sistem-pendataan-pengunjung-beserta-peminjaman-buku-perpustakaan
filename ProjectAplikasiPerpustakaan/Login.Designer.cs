@@ -45,38 +45,40 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Roboto Mono", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(982, 236);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 32);
+            this.label1.Size = new System.Drawing.Size(107, 32);
             this.label1.TabIndex = 0;
             this.label1.Text = "LOGIN";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Roboto Mono", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(765, 167);
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(662, 168);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(504, 32);
+            this.label2.Size = new System.Drawing.Size(737, 36);
             this.label2.TabIndex = 1;
             this.label2.Text = "SISTEM PEMINJAMAN BUKU PERPUSTAKAAN";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(803, 336);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(83, 20);
+            this.label3.Size = new System.Drawing.Size(88, 22);
             this.label3.TabIndex = 2;
             this.label3.Text = "Username";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(803, 403);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(78, 20);
+            this.label4.Size = new System.Drawing.Size(88, 22);
             this.label4.TabIndex = 3;
             this.label4.Text = "Password";
             // 
@@ -98,11 +100,12 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnLogin.BackColor = System.Drawing.Color.ForestGreen;
             this.btnLogin.Cursor = System.Windows.Forms.Cursors.AppStarting;
-            this.btnLogin.Location = new System.Drawing.Point(1057, 487);
+            this.btnLogin.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogin.Location = new System.Drawing.Point(1035, 487);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(109, 51);
+            this.btnLogin.Size = new System.Drawing.Size(131, 64);
             this.btnLogin.TabIndex = 6;
             this.btnLogin.Text = "Masuk";
             this.btnLogin.UseVisualStyleBackColor = false;
@@ -121,11 +124,12 @@
             // 
             // btnKembali
             // 
-            this.btnKembali.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnKembali.BackColor = System.Drawing.Color.Crimson;
             this.btnKembali.Cursor = System.Windows.Forms.Cursors.AppStarting;
+            this.btnKembali.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnKembali.Location = new System.Drawing.Point(818, 487);
             this.btnKembali.Name = "btnKembali";
-            this.btnKembali.Size = new System.Drawing.Size(109, 51);
+            this.btnKembali.Size = new System.Drawing.Size(134, 64);
             this.btnKembali.TabIndex = 7;
             this.btnKembali.Text = "Kembali";
             this.btnKembali.UseVisualStyleBackColor = false;
