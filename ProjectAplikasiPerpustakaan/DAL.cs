@@ -31,13 +31,26 @@ namespace ProjectAplikasiPerpustakaan
             return localIP;
         }
 
+        /* public static string GetConnectionString()
+        {
+            // GANTI IP INI SAJA SETIAP KALI IP BERUBAH
+            string serverIP = "172.20.10.4";   // ← Ubah di sini
+
+            string connectionString = $"Data Source={serverIP},1433;" +
+                                      "Initial Catalog=db_perpustakaan;" +
+                                      "User ID=sa;" +
+                                      "Password=nopall946;";
+
+            return connectionString;
+        } */
+
         public static string GetConnectionString()
         {
-            // Untuk development lokal
-            string connectionString = "Data Source=NAUFAL\\NZO2;Initial Catalog=db_perpustakaan;Integrated Security=True";
+            // ✅ MODE DEVELOPMENT — aktifkan ini sekarang
+            string connectionString = $"Data Source={GetLocalIPAddress()};Initial Catalog=db_perpustakaan;User ID=sa;Password=nopall946;";
 
-            // Uncomment baris ini saat deploy ke client:
-            // string connectionString = $"Data Source={GetLocalIPAddress()};Initial Catalog=db_perpustakaan;User ID=sa;Password=passwordkamu;";
+            // MODE DEPLOY — aktifkan ini nanti saat mau ujian
+            // string connectionString = $"Data Source={GetLocalIPAddress()};Initial Catalog=db_perpustakaan;User ID=sa;Password=nopall946;";
 
             return connectionString;
         }

@@ -8,8 +8,8 @@ namespace ProjectAplikasiPerpustakaan
 {
     public partial class TotalLaporan : Form
     {
-        private readonly string connectionString =
-            "Data Source=NAUFAL\\NZO2;Initial Catalog=db_perpustakaan;Integrated Security=True";
+
+        private readonly string connectionString = DAL.GetConnectionString();
 
         public TotalLaporan()
         {

@@ -6,10 +6,9 @@ namespace ProjectAplikasiPerpustakaan
 {
     public partial class EditPengguna : Form
     {
-        private readonly string connectionString =
-            "Data Source=NAUFAL\\NZO2;Initial Catalog=db_perpustakaan;Integrated Security=True";
 
         private readonly int idUser;
+        private readonly string connectionString = DAL.GetConnectionString();
 
         public EditPengguna(int idUser)
         {

@@ -15,6 +15,7 @@ namespace ProjectAplikasiPerpustakaan
     {
         private readonly string namaPengguna;
         private readonly string rolePengguna;
+        private readonly string connectionString = DAL.GetConnectionString();
         public DataPeminjaman(string kodeBuku, string judulBuku, string nik,
                               string namaLengkap, string noHp, string email, string peguruan,
                               string namaPengguna, string rolePengguna)

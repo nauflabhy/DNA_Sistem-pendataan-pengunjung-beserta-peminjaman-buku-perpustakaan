@@ -7,11 +7,10 @@ namespace ProjectAplikasiPerpustakaan
 {
     public partial class CetakLaporan : Form
     {
-        static string connectionString =
-            "Data Source=NAUFAL\\NZO2;Initial Catalog=db_perpustakaan;Integrated Security=True";
 
         private BindingSource bsLaporan = new BindingSource();
         private DataTable dtLaporan;
+        private readonly string connectionString = DAL.GetConnectionString();
 
         public CetakLaporan()
         {

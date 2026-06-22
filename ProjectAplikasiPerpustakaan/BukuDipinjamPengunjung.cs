@@ -8,11 +8,10 @@ namespace ProjectAplikasiPerpustakaan
 {
     public partial class BukuDipinjamPengunjung : Form
     {
-        private readonly string connectionString =
-            "Data Source=NAUFAL\\NZO2;Initial Catalog=db_perpustakaan;Integrated Security=True";
 
         private DataTable dtDipinjam;
         private BindingSource bsBuku = new BindingSource();
+        private readonly string connectionString = DAL.GetConnectionString();
 
         public BukuDipinjamPengunjung()
         {

@@ -9,10 +9,10 @@ namespace ProjectAplikasiPerpustakaan
     public partial class DetailBuku : Form
     {
         private readonly SqlConnection conn;
-        private readonly string connectionString =
-            "Data Source=NAUFAL\\NZO2;Initial Catalog=db_perpustakaan;Integrated Security=True";
 
         private readonly int idBuku;
+
+        private readonly string connectionString = DAL.GetConnectionString();
 
         public DetailBuku(int idBuku, string judulBuku)
         {

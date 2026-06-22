@@ -7,11 +7,10 @@ namespace ProjectAplikasiPerpustakaan
 {
     public partial class CariBuku : Form
     {
-        private readonly string connectionString =
-            "Data Source=NAUFAL\\NZO2;Initial Catalog=db_perpustakaan;Integrated Security=True";
 
         private DataTable dtBuku;
         private BindingSource bsBuku = new BindingSource();
+        private readonly string connectionString = DAL.GetConnectionString();
 
         public CariBuku()
         {

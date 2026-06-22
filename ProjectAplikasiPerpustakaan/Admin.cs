@@ -12,8 +12,9 @@ namespace ProjectAplikasiPerpustakaan
         private readonly string namaAdmin;
         private readonly string roleAdmin;
         private readonly int idUser;
-        private readonly string connectionString =
-            "Data Source=NAUFAL\\NZO2;Initial Catalog=db_perpustakaan;Integrated Security=True";
+
+        // ✅ Pakai DAL.GetConnectionString() — satu tempat untuk semua
+        private readonly string connectionString = DAL.GetConnectionString();
 
         private DataTable dtBuku;
         private BindingSource bsBuku = new BindingSource();
@@ -31,22 +32,17 @@ namespace ProjectAplikasiPerpustakaan
             InitializeComponent();
         }
 
-        // ================== FORM LOAD (TIDAK load data otomatis) ==================
         private void Admin_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'db_perpustakaanDataSet1.vw_DaftarBuku' table. You can move, or remove it, as needed.
             this.vw_DaftarBukuTableAdapter.Fill(this.db_perpustakaanDataSet1.vw_DaftarBuku);
-            // TODO: This line of code loads data into the 'db_perpustakaanDataSet.BUKU' table. You can move, or remove it, as needed.
             this.bUKUTableAdapter.Fill(this.db_perpustakaanDataSet.BUKU);
             if (!string.IsNullOrEmpty(namaAdmin))
             {
                 this.Text = $"Admin Panel - {namaAdmin}";
             }
-
             bindingNavigator1.BindingSource = bsBuku;
         }
 
-        // ================== LOAD DAFTAR BUKU ==================
         private void LoadDataBuku()
         {
             try
@@ -54,28 +50,20 @@ namespace ProjectAplikasiPerpustakaan
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-
-                    string query = @"
-                SELECT *
-                FROM vw_AdminDaftarBuku
-                ORDER BY judul ASC";
-
+                    string query = "SELECT * FROM vw_AdminDaftarBuku ORDER BY judul ASC";
                     using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
                     {
                         dtBuku = new DataTable();
                         da.Fill(dtBuku);
-
                         bsBuku.DataSource = dtBuku;
                         dataGridView1.DataSource = bsBuku;
                     }
 
-                    dataGridView1.AutoSizeColumnsMode =
-                        DataGridViewAutoSizeColumnsMode.Fill;
+                    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                     dataGridView1.ReadOnly = true;
                     dataGridView1.AllowUserToAddRows = false;
                     dataGridView1.AllowUserToDeleteRows = false;
-                    dataGridView1.SelectionMode =
-                        DataGridViewSelectionMode.FullRowSelect;
+                    dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                     dataGridView1.MultiSelect = false;
 
                     if (dataGridView1.Columns["id_buku"] != null)
@@ -88,14 +76,12 @@ namespace ProjectAplikasiPerpustakaan
             }
         }
 
-        // ================== TOMBOL LOAD DATABASE ==================
         private void btnLoadDatabase_Click(object sender, EventArgs e)
         {
             txtCariBuku.Clear();
             LoadDataBuku();
         }
 
-        // ================== TOMBOL EDIT BUKU ==================
         private void btnEditBuku_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
@@ -106,29 +92,19 @@ namespace ProjectAplikasiPerpustakaan
             }
 
             int idBuku = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["id_buku"].Value);
-
-            // Debug ID
-            MessageBox.Show($"Anda memilih Buku ID: {idBuku}", "Debug ID",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
-
             EditBuku formEdit = new EditBuku(idBuku);
             formEdit.ShowDialog();
 
             if (formEdit.DialogResult == DialogResult.OK)
-            {
-                LoadDataBuku(); // refresh grid
-            }
+                LoadDataBuku();
         }
 
-        // ================== TOMBOL DAFTAR PENGAJUAN ==================
         private void btnDaftarPengajuan_Click(object sender, EventArgs e)
         {
             try
             {
                 btnKembali formPengajuan = new btnKembali(idUser, namaAdmin, roleAdmin);
                 formPengajuan.ShowDialog();
-
-                // Refresh data setelah kembali dari form pengajuan
                 LoadDataBuku();
             }
             catch (Exception ex)
@@ -138,7 +114,6 @@ namespace ProjectAplikasiPerpustakaan
             }
         }
 
-        // ================== TOMBOL LAPORAN ==================
         private void btnLaporan_Click(object sender, EventArgs e)
         {
             try
@@ -153,7 +128,6 @@ namespace ProjectAplikasiPerpustakaan
             }
         }
 
-        // ================== LOGOUT ==================
         private void btnLogout_Click(object sender, EventArgs e)
         {
             DialogResult konfirmasi = MessageBox.Show("Apakah Anda yakin ingin keluar?",
@@ -167,7 +141,6 @@ namespace ProjectAplikasiPerpustakaan
             }
         }
 
-        // Event kosong (bisa dihapus jika tidak dipakai)
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
 
         private void btnTambahBuku_Click(object sender, EventArgs e)
@@ -176,14 +149,9 @@ namespace ProjectAplikasiPerpustakaan
             {
                 using (TambahBuku formTambah = new TambahBuku())
                 {
-                    // Buka form Tambah Buku sebagai Dialog
                     DialogResult hasil = formTambah.ShowDialog();
-
-                    // Jika buku berhasil ditambahkan (DialogResult.OK), refresh DataGridView
                     if (hasil == DialogResult.OK)
-                    {
-                        LoadDataBuku(); // Refresh daftar buku otomatis
-                    }
+                        LoadDataBuku();
                 }
             }
             catch (Exception ex)
@@ -202,13 +170,18 @@ namespace ProjectAplikasiPerpustakaan
                 return;
             }
 
-            // Ambil data buku yang dipilih
             DataGridViewRow row = dataGridView1.SelectedRows[0];
             int idBuku = Convert.ToInt32(row.Cells["id_buku"].Value);
             string kodeBuku = row.Cells["kode_buku"].Value?.ToString() ?? "-";
             string judulBuku = row.Cells["judul"].Value?.ToString() ?? "-";
 
-            // Konfirmasi penghapusan
+            if (BukuSedangDipinjam(idBuku))
+            {
+                MessageBox.Show("Buku tidak dapat dihapus karena sedang dalam proses peminjaman aktif.",
+                    "Tidak Dapat Dihapus", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             DialogResult konfirmasi = MessageBox.Show(
                 $"Anda yakin ingin menghapus buku berikut?\n\n" +
                 $"Kode Buku : {kodeBuku}\n" +
@@ -220,14 +193,6 @@ namespace ProjectAplikasiPerpustakaan
 
             if (konfirmasi != DialogResult.Yes) return;
 
-            // Cek apakah buku sedang dipinjam
-            if (BukuSedangDipinjam(idBuku))
-            {
-                MessageBox.Show("Buku tidak dapat dihapus karena sedang dipinjam atau memiliki pengajuan aktif.",
-                    "Tidak Dapat Dihapus", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -237,25 +202,25 @@ namespace ProjectAplikasiPerpustakaan
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@id_buku", idBuku);
-
-                        int result = cmd.ExecuteNonQuery();
-
-                        if (result > 0)
-                        {
-                            MessageBox.Show("Buku berhasil dihapus.");
-                            CariBukuByKeyword();
-                        }
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Buku berhasil dihapus.", "Sukses",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadDataBuku();
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 MessageBox.Show("Gagal menghapus buku:\n" + ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Terjadi kesalahan:\n" + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        // ================== CEK APAKAH BUKU SEDANG DIPINJAM ==================
         private bool BukuSedangDipinjam(int idBuku)
         {
             try
@@ -263,48 +228,35 @@ namespace ProjectAplikasiPerpustakaan
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-
                     string query = @"
-                SELECT COUNT(*)
-                FROM vw_BukuSedangDipinjam
-                WHERE id_buku = @id_buku";
+                        SELECT COUNT(*) FROM PEMINJAMAN 
+                        WHERE id_buku = @id_buku
+                        AND status IN ('menunggu', 'disetujui', 'dipinjam')";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@id_buku", idBuku);
-                        int jumlah = Convert.ToInt32(cmd.ExecuteScalar());
-                        return jumlah > 0;
+                        return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
                     }
                 }
             }
-            catch
-            {
-                return true;
-            }
+            catch { return true; }
         }
 
         private void CariBukuByKeyword()
         {
             string keyword = txtCariBuku.Text.Trim();
-
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
+                    if (string.IsNullOrEmpty(keyword)) { LoadDataBuku(); return; }
 
-                    if (string.IsNullOrEmpty(keyword))
-                    {
-                        LoadDataBuku();
-                        return;
-                    }
-
-                    using (SqlCommand cmd =
-                        new SqlCommand("sp_SearchAdminBuku", conn))
+                    using (SqlCommand cmd = new SqlCommand("sp_SearchAdminBuku", conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@keyword", keyword);
-
                         using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                         {
                             dtBuku = new DataTable();
@@ -321,10 +273,7 @@ namespace ProjectAplikasiPerpustakaan
             }
         }
 
-        private void txtCariBuku_TextChanged(object sender, EventArgs e)
-        {
-            CariBukuByKeyword();
-        }
+        private void txtCariBuku_TextChanged(object sender, EventArgs e) => CariBukuByKeyword();
 
         private void btnCari_Click(object sender, EventArgs e)
         {
@@ -335,10 +284,8 @@ namespace ProjectAplikasiPerpustakaan
         private void btnTestDataInjection_Click(object sender, EventArgs e)
         {
             DialogResult konfirmasi = MessageBox.Show(
-        "Jalankan simulasi SQL Injection?\nSemua data buku akan dimodifikasi.",
-        "Test SQL Injection",
-        MessageBoxButtons.YesNo,
-        MessageBoxIcon.Warning);
+                "Jalankan simulasi SQL Injection?\nSemua data buku akan dimodifikasi.",
+                "Test SQL Injection", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (konfirmasi != DialogResult.Yes) return;
 
@@ -347,31 +294,19 @@ namespace ProjectAplikasiPerpustakaan
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-
                     string injectedQuery = @"
-            UPDATE BUKU
-            SET
-                judul = 'HACKED',
-                pengarang = 'HACKED',
-                penerbit = 'HACKED',
-                tahun_terbit = 9999,
-                kategori = 'Fiksi',
-                stok_tersedia = 999,
-                lokasi = 'HACKED'
-            ";
+                        UPDATE BUKU SET
+                            judul = 'HACKED', pengarang = 'HACKED',
+                            penerbit = 'HACKED', tahun_terbit = 9999,
+                            kategori = 'Fiksi', stok_tersedia = 999, lokasi = 'HACKED'";
 
                     using (SqlCommand cmd = new SqlCommand(injectedQuery, conn))
                     {
                         int result = cmd.ExecuteNonQuery();
-
-                        MessageBox.Show(
-                            $"{result} data berhasil dimodifikasi.",
-                            "SQL Injection Berhasil",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
+                        MessageBox.Show($"{result} data berhasil dimodifikasi.",
+                            "SQL Injection Berhasil", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
-
                 LoadDataBuku();
             }
             catch (Exception ex)
@@ -382,11 +317,8 @@ namespace ProjectAplikasiPerpustakaan
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            DialogResult konfirmasi = MessageBox.Show(
-         "Kembalikan data buku dari backup?",
-         "Restore Database",
-         MessageBoxButtons.YesNo,
-         MessageBoxIcon.Question);
+            DialogResult konfirmasi = MessageBox.Show("Kembalikan data buku dari backup?",
+                "Restore Database", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (konfirmasi != DialogResult.Yes) return;
 
@@ -395,34 +327,22 @@ namespace ProjectAplikasiPerpustakaan
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-
                     string query = @"
-            UPDATE b
-            SET
-                b.kode_buku = bb.kode_buku,
-                b.judul = bb.judul,
-                b.pengarang = bb.pengarang,
-                b.penerbit = bb.penerbit,
-                b.tahun_terbit = bb.tahun_terbit,
-                b.kategori = bb.kategori,
-                b.stok_tersedia = bb.stok_tersedia,
-                b.lokasi = bb.lokasi
-            FROM BUKU b
-            INNER JOIN BUKU_BACKUP bb
-                ON b.id_buku = bb.id_buku";
+                        UPDATE b SET
+                            b.kode_buku = bb.kode_buku, b.judul = bb.judul,
+                            b.pengarang = bb.pengarang, b.penerbit = bb.penerbit,
+                            b.tahun_terbit = bb.tahun_terbit, b.kategori = bb.kategori,
+                            b.stok_tersedia = bb.stok_tersedia, b.lokasi = bb.lokasi
+                        FROM BUKU b
+                        INNER JOIN BUKU_BACKUP bb ON b.id_buku = bb.id_buku";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         int result = cmd.ExecuteNonQuery();
-
-                        MessageBox.Show(
-                            $"{result} data berhasil dipulihkan.",
-                            "Restore Berhasil",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
+                        MessageBox.Show($"{result} data berhasil dipulihkan.",
+                            "Restore Berhasil", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
-
                 LoadDataBuku();
             }
             catch (Exception ex)
@@ -437,32 +357,25 @@ namespace ProjectAplikasiPerpustakaan
             {
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
-                    string filePath = ofd.FileName;
-                    using (var stream = File.Open(filePath, FileMode.Open, FileAccess.Read))
+                    using (var stream = File.Open(ofd.FileName, FileMode.Open, FileAccess.Read))
+                    using (var reader = ExcelReaderFactory.CreateReader(stream))
                     {
-                        using (var reader = ExcelReaderFactory.CreateReader(stream))
+                        var result = reader.AsDataSet(new ExcelDataSetConfiguration()
                         {
-                            var result = reader.AsDataSet(new ExcelDataSetConfiguration()
-                            {
-                                ConfigureDataTable = (_) => new ExcelDataTableConfiguration()
-                                {
-                                    UseHeaderRow = true
-                                }
-                            });
+                            ConfigureDataTable = (_) => new ExcelDataTableConfiguration()
+                            { UseHeaderRow = true }
+                        });
 
-                            DataTable dt = result.Tables[0];
-                            dataGridView1.DataSource = dt;
-                            dataGridView1.Enabled = false;
+                        DataTable dt = result.Tables[0];
+                        dataGridView1.DataSource = dt;
+                        dataGridView1.Enabled = false;
+                        btnImpDb.Enabled = true;
+                        btnTambahBuku.Enabled = false;
+                        btnEditBuku.Enabled = false;
+                        btnHapusBuku.Enabled = false;
 
-                            // Nonaktifkan tombol lain saat preview
-                            btnImpDb.Enabled = true;
-                            btnTambahBuku.Enabled = false;
-                            btnEditBuku.Enabled = false;
-                            btnHapusBuku.Enabled = false;
-
-                            MessageBox.Show($"Preview berhasil! Total {dt.Rows.Count} data siap diimport.",
-                                "Preview Excel", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
+                        MessageBox.Show($"Preview berhasil! Total {dt.Rows.Count} data siap diimport.",
+                            "Preview Excel", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }
@@ -473,7 +386,6 @@ namespace ProjectAplikasiPerpustakaan
             try
             {
                 DataTable dt = (DataTable)dataGridView1.DataSource;
-
                 if (dt == null || dt.Rows.Count == 0)
                 {
                     MessageBox.Show("Tidak ada data untuk diimport.", "Peringatan",
@@ -481,13 +393,11 @@ namespace ProjectAplikasiPerpustakaan
                     return;
                 }
 
-                int sukses = 0;
-                int gagal = 0;
+                int sukses = 0, gagal = 0;
 
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-
                     foreach (DataRow row in dt.Rows)
                     {
                         try
@@ -500,20 +410,20 @@ namespace ProjectAplikasiPerpustakaan
                             string lokasi = row["lokasi"].ToString().Trim();
 
                             if (string.IsNullOrEmpty(kodeBuku) || string.IsNullOrEmpty(judul))
-                            {
-                                gagal++;
-                                continue;
-                            }
+                            { gagal++; continue; }
 
-                            if (!int.TryParse(row["tahun_terbit"].ToString(), out int tahun)) { gagal++; continue; }
-                            if (!int.TryParse(row["stok_tersedia"].ToString(), out int stok)) { gagal++; continue; }
+                            if (!int.TryParse(row["tahun_terbit"].ToString(), out int tahun))
+                            { gagal++; continue; }
+
+                            if (!int.TryParse(row["stok_tersedia"].ToString(), out int stok))
+                            { gagal++; continue; }
 
                             string query = @"
-                        IF NOT EXISTS (SELECT 1 FROM BUKU WHERE kode_buku = @KodeBuku)
-                        BEGIN
-                            INSERT INTO BUKU (kode_buku, judul, pengarang, penerbit, tahun_terbit, kategori, stok_tersedia, lokasi)
-                            VALUES (@KodeBuku, @Judul, @Pengarang, @Penerbit, @Tahun, @Kategori, @Stok, @Lokasi)
-                        END";
+                                IF NOT EXISTS (SELECT 1 FROM BUKU WHERE kode_buku = @KodeBuku)
+                                BEGIN
+                                    INSERT INTO BUKU (kode_buku, judul, pengarang, penerbit, tahun_terbit, kategori, stok_tersedia, lokasi)
+                                    VALUES (@KodeBuku, @Judul, @Pengarang, @Penerbit, @Tahun, @Kategori, @Stok, @Lokasi)
+                                END";
 
                             using (SqlCommand cmd = new SqlCommand(query, conn))
                             {
@@ -536,14 +446,13 @@ namespace ProjectAplikasiPerpustakaan
                 MessageBox.Show($"Import selesai!\nBerhasil: {sukses}\nGagal/Skip: {gagal}",
                     "Hasil Import", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // ✅ Kembalikan ke mode normal
                 dataGridView1.Enabled = true;
                 btnTambahBuku.Enabled = true;
                 btnEditBuku.Enabled = true;
                 btnHapusBuku.Enabled = true;
                 btnImpDb.Enabled = false;
 
-                LoadDataBuku(); // refresh grid
+                LoadDataBuku();
             }
             catch (Exception ex)
             {

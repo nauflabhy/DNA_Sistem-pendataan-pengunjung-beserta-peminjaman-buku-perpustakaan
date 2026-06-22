@@ -7,13 +7,13 @@ namespace ProjectAplikasiPerpustakaan
 {
     public partial class FormPengembalian : Form
     {
-        private readonly string connectionString =
-            "Data Source=NAUFAL\\NZO2;Initial Catalog=db_perpustakaan;Integrated Security=True";
 
         private int idPeminjaman;
         private int idUser;
         private string namaAdmin;
         private string roleAdmin;
+
+        private readonly string connectionString = DAL.GetConnectionString();
 
         public FormPengembalian(
             int idPeminjaman,
@@ -54,137 +54,62 @@ namespace ProjectAplikasiPerpustakaan
                 {
                     conn.Open();
 
-                    // =========================
-                    // CEK APAKAH SUDAH DIKEMBALIKAN
-                    // =========================
-                    string checkQuery = @"
-            SELECT COUNT(*)
-            FROM PENGEMBALIAN
-            WHERE id_peminjaman = @id_peminjaman";
-
+                    // CEK SUDAH DIKEMBALIKAN
+                    string checkQuery = "SELECT COUNT(*) FROM PENGEMBALIAN WHERE id_peminjaman = @id_peminjaman";
                     using (SqlCommand checkCmd = new SqlCommand(checkQuery, conn))
                     {
                         checkCmd.Parameters.AddWithValue("@id_peminjaman", idPeminjaman);
-
                         int jumlah = Convert.ToInt32(checkCmd.ExecuteScalar());
-
                         if (jumlah > 0)
                         {
-                            MessageBox.Show(
-                                "Buku ini sudah pernah dikembalikan.",
-                                "Informasi",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
-
+                            MessageBox.Show("Buku ini sudah pernah dikembalikan.", "Informasi",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return;
                         }
                     }
 
-                    // =========================
-                    // INSERT PENGEMBALIAN
-                    // =========================
-                    string queryInsert = @"
-            INSERT INTO PENGEMBALIAN
-            (
-                id_peminjaman,
-                tanggal_kembali,
-                kondisi_buku,
-                denda,
-                catatan
-            )
-            VALUES
-            (
-                @id_peminjaman,
-                @tanggal_kembali,
-                @kondisi_buku,
-                @denda,
-                @catatan
-            )";
-
+                    // Hitung denda
                     decimal denda = 0;
-
                     switch (cmbKondisiBuku.Text.ToLower())
                     {
-                        case "rusak ringan":
-                            denda = 10000;
-                            break;
-
-                        case "rusak berat":
-                            denda = 50000;
-                            break;
-
-                        case "hilang":
-                            denda = 100000;
-                            break;
+                        case "rusak ringan": denda = 10000; break;
+                        case "rusak berat": denda = 50000; break;
+                        case "hilang": denda = 100000; break;
                     }
+
+                    // INSERT PENGEMBALIAN
+                    string queryInsert = @"
+                INSERT INTO PENGEMBALIAN
+                (id_peminjaman, tanggal_kembali, kondisi_buku, denda, status, catatan)
+                VALUES
+                (@id_peminjaman, @tanggal_kembali, @kondisi_buku, @denda, 'diverifikasi', @catatan)";
 
                     using (SqlCommand cmd = new SqlCommand(queryInsert, conn))
                     {
                         cmd.Parameters.AddWithValue("@id_peminjaman", idPeminjaman);
                         cmd.Parameters.AddWithValue("@tanggal_kembali", DateTime.Now);
-                        cmd.Parameters.AddWithValue(
-                            "@kondisi_buku",
-                            cmbKondisiBuku.Text
-                        );
+                        cmd.Parameters.AddWithValue("@kondisi_buku", cmbKondisiBuku.Text);
                         cmd.Parameters.AddWithValue("@denda", denda);
                         cmd.Parameters.AddWithValue("@catatan", "Buku telah dikembalikan");
-
                         cmd.ExecuteNonQuery();
+
+                        // ✅ Trigger trg_TambahStokKembali otomatis berjalan saat INSERT
+                        // ✅ Trigger juga otomatis update status PEMINJAMAN jadi 'selesai'
+                        // Tidak perlu update stok & status manual lagi
                     }
 
-                    // =========================
-                    // UPDATE STATUS
-                    // =========================
+                    MessageBox.Show("Buku berhasil dikembalikan!", "Sukses",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    string queryUpdate = @"
-                    UPDATE PEMINJAMAN
-                    SET status = 'selesai'
-                    WHERE id_peminjaman = @id_peminjaman";
-
-                    using (SqlCommand cmdUpdate = new SqlCommand(queryUpdate, conn))
-                    {
-                        cmdUpdate.Parameters.AddWithValue("@id_peminjaman", idPeminjaman);
-                        cmdUpdate.ExecuteNonQuery();
-
-                        if (cmbKondisiBuku.Text.ToLower() != "hilang")
-                        {
-                            string queryStok = @"
-                            UPDATE BUKU
-                            SET stok_tersedia = stok_tersedia + 1
-                            WHERE id_buku = (
-                                SELECT id_buku
-                                FROM PEMINJAMAN
-                                WHERE id_peminjaman = @id_peminjaman
-                            )";
-
-                            using (SqlCommand cmdStok = new SqlCommand(queryStok, conn))
-                            {
-                                cmdStok.Parameters.AddWithValue("@id_peminjaman", idPeminjaman);
-                                cmdStok.ExecuteNonQuery();
-                            }
-                        }
-                    }
-
-                    MessageBox.Show(
-                        "Buku berhasil dikembalikan!",
-                        "Sukses",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-
-                    // buka laporan
                     CetakLaporan formLaporan = new CetakLaporan();
                     formLaporan.Show();
-
                     this.Close();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    "Terjadi kesalahan:\n" + ex.Message,
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                MessageBox.Show("Terjadi kesalahan:\n" + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

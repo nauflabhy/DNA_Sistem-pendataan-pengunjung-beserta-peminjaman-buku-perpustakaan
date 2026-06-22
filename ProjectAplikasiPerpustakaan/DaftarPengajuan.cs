@@ -7,14 +7,13 @@ namespace ProjectAplikasiPerpustakaan
 {
     public partial class btnKembali : Form
     {
-        private readonly string connectionString =
-            "Data Source=NAUFAL\\NZO2;Initial Catalog=db_perpustakaan;Integrated Security=True";
 
         private DataTable dtPengajuan;
         private readonly int idUser;
         private readonly string namaAdmin;
         private readonly string roleAdmin;
         private BindingSource bsPengajuan = new BindingSource();
+        private readonly string connectionString = DAL.GetConnectionString();
 
         public btnKembali(int idUser, string namaAdmin, string roleAdmin)
         {

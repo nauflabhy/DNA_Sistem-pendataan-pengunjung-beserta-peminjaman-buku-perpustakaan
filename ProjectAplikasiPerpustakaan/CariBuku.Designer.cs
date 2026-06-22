@@ -40,40 +40,42 @@
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnLoadDatabase = new System.Windows.Forms.Button();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(29, 156);
+            this.dataGridView1.Location = new System.Drawing.Point(280, 164);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(1747, 508);
+            this.dataGridView1.Size = new System.Drawing.Size(892, 535);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // btnDetailBuku
             // 
-            this.btnDetailBuku.Location = new System.Drawing.Point(62, 719);
+            this.btnDetailBuku.Location = new System.Drawing.Point(40, 58);
             this.btnDetailBuku.Name = "btnDetailBuku";
-            this.btnDetailBuku.Size = new System.Drawing.Size(149, 68);
+            this.btnDetailBuku.Size = new System.Drawing.Size(135, 53);
             this.btnDetailBuku.TabIndex = 2;
             this.btnDetailBuku.Text = "Detail Buku";
             this.btnDetailBuku.UseVisualStyleBackColor = true;
@@ -81,9 +83,9 @@
             // 
             // btnPinjam
             // 
-            this.btnPinjam.Location = new System.Drawing.Point(250, 723);
+            this.btnPinjam.Location = new System.Drawing.Point(40, 165);
             this.btnPinjam.Name = "btnPinjam";
-            this.btnPinjam.Size = new System.Drawing.Size(149, 59);
+            this.btnPinjam.Size = new System.Drawing.Size(135, 62);
             this.btnPinjam.TabIndex = 3;
             this.btnPinjam.Text = "Pinjam Buku";
             this.btnPinjam.UseVisualStyleBackColor = true;
@@ -91,36 +93,42 @@
             // 
             // txtCariBuku
             // 
-            this.txtCariBuku.Location = new System.Drawing.Point(535, 55);
+            this.txtCariBuku.AccessibleDescription = "";
+            this.txtCariBuku.AccessibleName = "";
+            this.txtCariBuku.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtCariBuku.Location = new System.Drawing.Point(280, 115);
             this.txtCariBuku.Name = "txtCariBuku";
-            this.txtCariBuku.Size = new System.Drawing.Size(514, 26);
+            this.txtCariBuku.Size = new System.Drawing.Size(514, 29);
             this.txtCariBuku.TabIndex = 5;
+            this.txtCariBuku.Text = "Cari berdasarkan kata kunci pencarian...";
             this.txtCariBuku.TextChanged += new System.EventHandler(this.txtCariBuku_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(435, 58);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(276, 82);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 20);
+            this.label1.Size = new System.Drawing.Size(383, 20);
             this.label1.TabIndex = 6;
-            this.label1.Text = "Cari Buku";
+            this.label1.Text = "Cari berdasarkan Judul, Pengarang, atau Kode";
             // 
             // btnCari
             // 
-            this.btnCari.Location = new System.Drawing.Point(1072, 55);
+            this.btnCari.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnCari.Location = new System.Drawing.Point(817, 115);
             this.btnCari.Name = "btnCari";
-            this.btnCari.Size = new System.Drawing.Size(90, 32);
+            this.btnCari.Size = new System.Drawing.Size(90, 34);
             this.btnCari.TabIndex = 7;
             this.btnCari.Text = "Cari";
-            this.btnCari.UseVisualStyleBackColor = true;
+            this.btnCari.UseVisualStyleBackColor = false;
             this.btnCari.Click += new System.EventHandler(this.btnCari_Click);
             // 
             // btnBukuDipinjam
             // 
-            this.btnBukuDipinjam.Location = new System.Drawing.Point(439, 724);
+            this.btnBukuDipinjam.Location = new System.Drawing.Point(40, 270);
             this.btnBukuDipinjam.Name = "btnBukuDipinjam";
-            this.btnBukuDipinjam.Size = new System.Drawing.Size(149, 59);
+            this.btnBukuDipinjam.Size = new System.Drawing.Size(135, 54);
             this.btnBukuDipinjam.TabIndex = 8;
             this.btnBukuDipinjam.Text = "Buku yang dipinjam";
             this.btnBukuDipinjam.UseVisualStyleBackColor = true;
@@ -128,9 +136,9 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(90, 78);
+            this.btnLogin.Location = new System.Drawing.Point(40, 613);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(121, 46);
+            this.btnLogin.Size = new System.Drawing.Size(121, 48);
             this.btnLogin.TabIndex = 9;
             this.btnLogin.Text = "Log In";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -138,9 +146,9 @@
             // 
             // btnLoadDatabase
             // 
-            this.btnLoadDatabase.Location = new System.Drawing.Point(615, 725);
+            this.btnLoadDatabase.Location = new System.Drawing.Point(40, 374);
             this.btnLoadDatabase.Name = "btnLoadDatabase";
-            this.btnLoadDatabase.Size = new System.Drawing.Size(158, 59);
+            this.btnLoadDatabase.Size = new System.Drawing.Size(135, 63);
             this.btnLoadDatabase.TabIndex = 10;
             this.btnLoadDatabase.Text = "Load Database";
             this.btnLoadDatabase.UseVisualStyleBackColor = true;
@@ -172,9 +180,34 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(1788, 33);
+            this.bindingNavigator1.Size = new System.Drawing.Size(1343, 33);
             this.bindingNavigator1.TabIndex = 11;
             this.bindingNavigator1.Text = "bindingNavigator1";
+            // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(34, 28);
+            this.bindingNavigatorAddNewItem.Text = "Add new";
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(54, 28);
+            this.bindingNavigatorCountItem.Text = "of {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
+            // 
+            // bindingNavigatorDeleteItem
+            // 
+            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
+            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
+            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(34, 28);
+            this.bindingNavigatorDeleteItem.Text = "Delete";
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -209,16 +242,9 @@
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Current position";
             // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(54, 28);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-            // 
             // bindingNavigatorSeparator1
             // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
             this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 33);
             // 
             // bindingNavigatorMoveNextItem
@@ -241,42 +267,34 @@
             // 
             // bindingNavigatorSeparator2
             // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 33);
             // 
-            // bindingNavigatorAddNewItem
+            // panel1
             // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(34, 28);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(34, 28);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
+            this.panel1.BackColor = System.Drawing.Color.LightSlateGray;
+            this.panel1.Controls.Add(this.btnDetailBuku);
+            this.panel1.Controls.Add(this.btnPinjam);
+            this.panel1.Controls.Add(this.btnLogin);
+            this.panel1.Controls.Add(this.btnLoadDatabase);
+            this.panel1.Controls.Add(this.btnBukuDipinjam);
+            this.panel1.Location = new System.Drawing.Point(0, 38);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(244, 743);
+            this.panel1.TabIndex = 12;
             // 
             // CariBuku
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1788, 832);
+            this.ClientSize = new System.Drawing.Size(1343, 777);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.bindingNavigator1);
-            this.Controls.Add(this.btnLoadDatabase);
-            this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.btnBukuDipinjam);
             this.Controls.Add(this.btnCari);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtCariBuku);
-            this.Controls.Add(this.btnPinjam);
-            this.Controls.Add(this.btnDetailBuku);
             this.Controls.Add(this.dataGridView1);
+            this.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "CariBuku";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.CariBuku_Load);
@@ -285,6 +303,7 @@
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -314,5 +333,6 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.Panel panel1;
     }
 }

@@ -13,13 +13,13 @@ namespace ProjectAplikasiPerpustakaan
 {
     public partial class Pinjam : Form
     {
-        private readonly string connectionString =
-            "Data Source=NAUFAL\\NZO2;Initial Catalog=db_perpustakaan;Integrated Security=True";
 
         private readonly int idBuku;
         private readonly string kodeBuku;
         private readonly string judulBuku;
         private readonly int? idUser;
+
+        private readonly string connectionString = DAL.GetConnectionString();
 
         // Constructor dengan parameter (dipanggil dari form CariBuku)
         public Pinjam(int idBuku, string kodeBuku, string judulBuku, int? idUser = null)
