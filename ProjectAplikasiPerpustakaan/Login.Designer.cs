@@ -103,6 +103,7 @@
             this.btnLogin.BackColor = System.Drawing.Color.ForestGreen;
             this.btnLogin.Cursor = System.Windows.Forms.Cursors.AppStarting;
             this.btnLogin.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogin.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnLogin.Location = new System.Drawing.Point(1035, 487);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(131, 64);
@@ -127,6 +128,7 @@
             this.btnKembali.BackColor = System.Drawing.Color.Crimson;
             this.btnKembali.Cursor = System.Windows.Forms.Cursors.AppStarting;
             this.btnKembali.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKembali.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnKembali.Location = new System.Drawing.Point(818, 487);
             this.btnKembali.Name = "btnKembali";
             this.btnKembali.Size = new System.Drawing.Size(134, 64);
