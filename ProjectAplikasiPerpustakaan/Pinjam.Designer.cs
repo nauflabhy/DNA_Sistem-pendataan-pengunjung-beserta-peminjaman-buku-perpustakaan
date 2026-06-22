@@ -48,46 +48,50 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Roboto Mono", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(831, 98);
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(814, 98);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(294, 32);
+            this.label2.Size = new System.Drawing.Size(390, 32);
             this.label2.TabIndex = 5;
             this.label2.Text = "FORM PEMINJAMAN BUKU";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(787, 296);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(117, 20);
+            this.label1.Size = new System.Drawing.Size(127, 22);
             this.label1.TabIndex = 6;
             this.label1.Text = "Nama Lengkap";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(787, 346);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 20);
+            this.label3.Size = new System.Drawing.Size(63, 22);
             this.label3.TabIndex = 7;
             this.label3.Text = "No Hp";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(787, 252);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 20);
+            this.label4.Size = new System.Drawing.Size(44, 22);
             this.label4.TabIndex = 8;
             this.label4.Text = "NIK";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(787, 395);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(48, 20);
+            this.label5.Size = new System.Drawing.Size(57, 22);
             this.label5.TabIndex = 9;
             this.label5.Text = "Email";
             // 
@@ -129,47 +133,56 @@
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(787, 448);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(145, 20);
+            this.label7.Size = new System.Drawing.Size(158, 22);
             this.label7.TabIndex = 16;
             this.label7.Text = "Perguruan/Sekolah";
             // 
             // btnAjukanPeminjaman
             // 
+            this.btnAjukanPeminjaman.BackColor = System.Drawing.Color.ForestGreen;
+            this.btnAjukanPeminjaman.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAjukanPeminjaman.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnAjukanPeminjaman.Location = new System.Drawing.Point(1035, 524);
             this.btnAjukanPeminjaman.Name = "btnAjukanPeminjaman";
-            this.btnAjukanPeminjaman.Size = new System.Drawing.Size(169, 49);
+            this.btnAjukanPeminjaman.Size = new System.Drawing.Size(187, 49);
             this.btnAjukanPeminjaman.TabIndex = 18;
             this.btnAjukanPeminjaman.Text = "Ajukan Peminjaman";
-            this.btnAjukanPeminjaman.UseVisualStyleBackColor = true;
+            this.btnAjukanPeminjaman.UseVisualStyleBackColor = false;
             this.btnAjukanPeminjaman.Click += new System.EventHandler(this.btnAjukanPeminjaman_Click);
             // 
             // btnKembali
             // 
-            this.btnKembali.Location = new System.Drawing.Point(788, 524);
+            this.btnKembali.BackColor = System.Drawing.Color.Crimson;
+            this.btnKembali.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKembali.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnKembali.Location = new System.Drawing.Point(773, 524);
             this.btnKembali.Name = "btnKembali";
-            this.btnKembali.Size = new System.Drawing.Size(165, 49);
+            this.btnKembali.Size = new System.Drawing.Size(180, 49);
             this.btnKembali.TabIndex = 19;
             this.btnKembali.Text = "Kembali";
-            this.btnKembali.UseVisualStyleBackColor = true;
+            this.btnKembali.UseVisualStyleBackColor = false;
             this.btnKembali.Click += new System.EventHandler(this.btnKembali_Click);
             // 
             // lblKodeBuku
             // 
             this.lblKodeBuku.AutoSize = true;
+            this.lblKodeBuku.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblKodeBuku.Location = new System.Drawing.Point(827, 172);
             this.lblKodeBuku.Name = "lblKodeBuku";
-            this.lblKodeBuku.Size = new System.Drawing.Size(83, 20);
+            this.lblKodeBuku.Size = new System.Drawing.Size(93, 22);
             this.lblKodeBuku.TabIndex = 20;
             this.lblKodeBuku.Text = "KodeBuku";
             // 
             // lblJudulBuku
             // 
             this.lblJudulBuku.AutoSize = true;
+            this.lblJudulBuku.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblJudulBuku.Location = new System.Drawing.Point(1041, 172);
             this.lblJudulBuku.Name = "lblJudulBuku";
-            this.lblJudulBuku.Size = new System.Drawing.Size(84, 20);
+            this.lblJudulBuku.Size = new System.Drawing.Size(92, 22);
             this.lblJudulBuku.TabIndex = 21;
             this.lblJudulBuku.Text = "JudulBuku";
             // 

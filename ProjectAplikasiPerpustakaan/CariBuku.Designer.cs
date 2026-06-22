@@ -73,6 +73,7 @@
             // 
             // btnDetailBuku
             // 
+            this.btnDetailBuku.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDetailBuku.Location = new System.Drawing.Point(40, 58);
             this.btnDetailBuku.Name = "btnDetailBuku";
             this.btnDetailBuku.Size = new System.Drawing.Size(135, 53);
@@ -83,7 +84,8 @@
             // 
             // btnPinjam
             // 
-            this.btnPinjam.Location = new System.Drawing.Point(40, 165);
+            this.btnPinjam.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPinjam.Location = new System.Drawing.Point(40, 154);
             this.btnPinjam.Name = "btnPinjam";
             this.btnPinjam.Size = new System.Drawing.Size(135, 62);
             this.btnPinjam.TabIndex = 3;
@@ -96,9 +98,10 @@
             this.txtCariBuku.AccessibleDescription = "";
             this.txtCariBuku.AccessibleName = "";
             this.txtCariBuku.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtCariBuku.Font = new System.Drawing.Font("Times New Roman", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCariBuku.Location = new System.Drawing.Point(280, 115);
             this.txtCariBuku.Name = "txtCariBuku";
-            this.txtCariBuku.Size = new System.Drawing.Size(514, 29);
+            this.txtCariBuku.Size = new System.Drawing.Size(514, 26);
             this.txtCariBuku.TabIndex = 5;
             this.txtCariBuku.Text = "Cari berdasarkan kata kunci pencarian...";
             this.txtCariBuku.TextChanged += new System.EventHandler(this.txtCariBuku_TextChanged);
@@ -106,16 +109,17 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(276, 82);
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(274, 65);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(383, 20);
+            this.label1.Size = new System.Drawing.Size(587, 32);
             this.label1.TabIndex = 6;
             this.label1.Text = "Cari berdasarkan Judul, Pengarang, atau Kode";
             // 
             // btnCari
             // 
             this.btnCari.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnCari.Font = new System.Drawing.Font("Times New Roman", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCari.Location = new System.Drawing.Point(817, 115);
             this.btnCari.Name = "btnCari";
             this.btnCari.Size = new System.Drawing.Size(90, 34);
@@ -126,7 +130,8 @@
             // 
             // btnBukuDipinjam
             // 
-            this.btnBukuDipinjam.Location = new System.Drawing.Point(40, 270);
+            this.btnBukuDipinjam.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBukuDipinjam.Location = new System.Drawing.Point(40, 264);
             this.btnBukuDipinjam.Name = "btnBukuDipinjam";
             this.btnBukuDipinjam.Size = new System.Drawing.Size(135, 54);
             this.btnBukuDipinjam.TabIndex = 8;
@@ -136,7 +141,8 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(40, 613);
+            this.btnLogin.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogin.Location = new System.Drawing.Point(54, 635);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(121, 48);
             this.btnLogin.TabIndex = 9;
@@ -146,6 +152,7 @@
             // 
             // btnLoadDatabase
             // 
+            this.btnLoadDatabase.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLoadDatabase.Location = new System.Drawing.Point(40, 374);
             this.btnLoadDatabase.Name = "btnLoadDatabase";
             this.btnLoadDatabase.Size = new System.Drawing.Size(135, 63);
@@ -180,7 +187,7 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(1343, 33);
+            this.bindingNavigator1.Size = new System.Drawing.Size(1343, 38);
             this.bindingNavigator1.TabIndex = 11;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -190,7 +197,7 @@
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(34, 28);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(34, 33);
             this.bindingNavigatorAddNewItem.Text = "Add new";
             // 
             // bindingNavigatorCountItem
