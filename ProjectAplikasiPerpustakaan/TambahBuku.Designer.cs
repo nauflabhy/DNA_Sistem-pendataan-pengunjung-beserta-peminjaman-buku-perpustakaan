@@ -50,24 +50,26 @@
             // 
             // btlBatal
             // 
+            this.btlBatal.BackColor = System.Drawing.Color.Crimson;
             this.btlBatal.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btlBatal.Location = new System.Drawing.Point(634, 660);
             this.btlBatal.Name = "btlBatal";
             this.btlBatal.Size = new System.Drawing.Size(208, 72);
             this.btlBatal.TabIndex = 0;
             this.btlBatal.Text = "Batal";
-            this.btlBatal.UseVisualStyleBackColor = true;
+            this.btlBatal.UseVisualStyleBackColor = false;
             this.btlBatal.Click += new System.EventHandler(this.btlBatal_Click);
             // 
             // btnTambah
             // 
+            this.btnTambah.BackColor = System.Drawing.Color.ForestGreen;
             this.btnTambah.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTambah.Location = new System.Drawing.Point(896, 660);
             this.btnTambah.Name = "btnTambah";
             this.btnTambah.Size = new System.Drawing.Size(208, 72);
             this.btnTambah.TabIndex = 1;
             this.btnTambah.Text = "Tambah";
-            this.btnTambah.UseVisualStyleBackColor = true;
+            this.btnTambah.UseVisualStyleBackColor = false;
             this.btnTambah.Click += new System.EventHandler(this.btnTambah_Click);
             // 
             // label1

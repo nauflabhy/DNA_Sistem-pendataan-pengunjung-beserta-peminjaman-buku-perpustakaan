@@ -45,118 +45,136 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(755, 166);
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(671, 133);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 20);
+            this.label1.Size = new System.Drawing.Size(68, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "Periode:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(755, 223);
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(671, 178);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(128, 20);
+            this.label2.Size = new System.Drawing.Size(124, 19);
             this.label2.TabIndex = 1;
             this.label2.Text = "Total Kunjungan:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(755, 287);
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(671, 230);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(139, 20);
+            this.label3.Size = new System.Drawing.Size(136, 19);
             this.label3.TabIndex = 2;
             this.label3.Text = "Total Peminjaman:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(755, 352);
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(671, 282);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(153, 20);
+            this.label4.Size = new System.Drawing.Size(147, 19);
             this.label4.TabIndex = 3;
             this.label4.Text = "Total Pengembalian:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(755, 421);
+            this.label5.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(671, 337);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(100, 20);
+            this.label5.Size = new System.Drawing.Size(95, 19);
             this.label5.TabIndex = 4;
             this.label5.Text = "Total Denda:";
             // 
             // lblDenda
             // 
             this.lblDenda.AutoSize = true;
-            this.lblDenda.Location = new System.Drawing.Point(1118, 421);
+            this.lblDenda.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDenda.Location = new System.Drawing.Point(994, 337);
             this.lblDenda.Name = "lblDenda";
-            this.lblDenda.Size = new System.Drawing.Size(51, 20);
+            this.lblDenda.Size = new System.Drawing.Size(51, 19);
             this.lblDenda.TabIndex = 9;
             this.lblDenda.Text = "label6";
             // 
             // lblPengembalian
             // 
             this.lblPengembalian.AutoSize = true;
-            this.lblPengembalian.Location = new System.Drawing.Point(1118, 352);
+            this.lblPengembalian.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPengembalian.Location = new System.Drawing.Point(994, 282);
             this.lblPengembalian.Name = "lblPengembalian";
-            this.lblPengembalian.Size = new System.Drawing.Size(51, 20);
+            this.lblPengembalian.Size = new System.Drawing.Size(51, 19);
             this.lblPengembalian.TabIndex = 8;
             this.lblPengembalian.Text = "label7";
             // 
             // lblPeminjaman
             // 
             this.lblPeminjaman.AutoSize = true;
-            this.lblPeminjaman.Location = new System.Drawing.Point(1118, 287);
+            this.lblPeminjaman.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPeminjaman.Location = new System.Drawing.Point(994, 230);
             this.lblPeminjaman.Name = "lblPeminjaman";
-            this.lblPeminjaman.Size = new System.Drawing.Size(51, 20);
+            this.lblPeminjaman.Size = new System.Drawing.Size(51, 19);
             this.lblPeminjaman.TabIndex = 7;
             this.lblPeminjaman.Text = "label8";
             // 
             // lblTotalKunjungan
             // 
             this.lblTotalKunjungan.AutoSize = true;
-            this.lblTotalKunjungan.Location = new System.Drawing.Point(1118, 223);
+            this.lblTotalKunjungan.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalKunjungan.Location = new System.Drawing.Point(994, 178);
             this.lblTotalKunjungan.Name = "lblTotalKunjungan";
-            this.lblTotalKunjungan.Size = new System.Drawing.Size(51, 20);
+            this.lblTotalKunjungan.Size = new System.Drawing.Size(51, 19);
             this.lblTotalKunjungan.TabIndex = 6;
             this.lblTotalKunjungan.Text = "label9";
             // 
             // lblPeriode
             // 
             this.lblPeriode.AutoSize = true;
-            this.lblPeriode.Location = new System.Drawing.Point(1118, 166);
+            this.lblPeriode.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPeriode.Location = new System.Drawing.Point(994, 133);
             this.lblPeriode.Name = "lblPeriode";
-            this.lblPeriode.Size = new System.Drawing.Size(60, 20);
+            this.lblPeriode.Size = new System.Drawing.Size(60, 19);
             this.lblPeriode.TabIndex = 5;
             this.lblPeriode.Text = "label10";
             // 
             // btnKembali
             // 
-            this.btnKembali.Location = new System.Drawing.Point(742, 512);
+            this.btnKembali.BackColor = System.Drawing.Color.Crimson;
+            this.btnKembali.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKembali.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnKembali.Location = new System.Drawing.Point(660, 410);
+            this.btnKembali.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnKembali.Name = "btnKembali";
-            this.btnKembali.Size = new System.Drawing.Size(198, 88);
+            this.btnKembali.Size = new System.Drawing.Size(176, 70);
             this.btnKembali.TabIndex = 10;
             this.btnKembali.Text = "Kembali";
-            this.btnKembali.UseVisualStyleBackColor = true;
+            this.btnKembali.UseVisualStyleBackColor = false;
             this.btnKembali.Click += new System.EventHandler(this.btnKembali_Click);
             // 
             // btnSimpanLaporan
             // 
-            this.btnSimpanLaporan.Location = new System.Drawing.Point(1032, 512);
+            this.btnSimpanLaporan.BackColor = System.Drawing.Color.ForestGreen;
+            this.btnSimpanLaporan.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSimpanLaporan.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSimpanLaporan.Location = new System.Drawing.Point(917, 410);
+            this.btnSimpanLaporan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSimpanLaporan.Name = "btnSimpanLaporan";
-            this.btnSimpanLaporan.Size = new System.Drawing.Size(198, 88);
+            this.btnSimpanLaporan.Size = new System.Drawing.Size(176, 70);
             this.btnSimpanLaporan.TabIndex = 11;
             this.btnSimpanLaporan.Text = "Simpan Laporan";
-            this.btnSimpanLaporan.UseVisualStyleBackColor = true;
+            this.btnSimpanLaporan.UseVisualStyleBackColor = false;
             this.btnSimpanLaporan.Click += new System.EventHandler(this.btnSimpanLaporan_Click);
             // 
             // TotalLaporan
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1799, 841);
+            this.ClientSize = new System.Drawing.Size(1599, 673);
             this.Controls.Add(this.btnSimpanLaporan);
             this.Controls.Add(this.btnKembali);
             this.Controls.Add(this.lblDenda);
@@ -169,6 +187,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "TotalLaporan";
             this.Text = "Laporan";
             this.Load += new System.EventHandler(this.Laporan_Load);

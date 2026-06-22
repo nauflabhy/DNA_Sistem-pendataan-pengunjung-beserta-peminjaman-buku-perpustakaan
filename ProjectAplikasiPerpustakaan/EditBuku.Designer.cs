@@ -52,158 +52,181 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(863, 82);
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(767, 66);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(163, 37);
+            this.label1.Size = new System.Drawing.Size(140, 32);
             this.label1.TabIndex = 0;
             this.label1.Text = "Edit Buku";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(734, 190);
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(652, 152);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 20);
+            this.label2.Size = new System.Drawing.Size(90, 19);
             this.label2.TabIndex = 1;
             this.label2.Text = "Kode Buku:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(734, 244);
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(652, 195);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(92, 20);
+            this.label3.Size = new System.Drawing.Size(89, 19);
             this.label3.TabIndex = 2;
             this.label3.Text = "Judul Buku:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(734, 301);
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(652, 241);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(91, 20);
+            this.label4.Size = new System.Drawing.Size(84, 19);
             this.label4.TabIndex = 3;
             this.label4.Text = "Pengarang:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(735, 356);
+            this.label5.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(653, 285);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(72, 20);
+            this.label5.Size = new System.Drawing.Size(72, 19);
             this.label5.TabIndex = 4;
             this.label5.Text = "Penerbit:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(735, 414);
+            this.label6.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(653, 331);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(102, 20);
+            this.label6.Size = new System.Drawing.Size(97, 19);
             this.label6.TabIndex = 5;
             this.label6.Text = "Tahun Terbit:";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(735, 527);
+            this.label8.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(653, 422);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(111, 20);
+            this.label8.Size = new System.Drawing.Size(106, 19);
             this.label8.TabIndex = 7;
             this.label8.Text = "Stok Tersedia:";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(735, 586);
+            this.label9.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(653, 469);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(59, 20);
+            this.label9.Size = new System.Drawing.Size(60, 19);
             this.label9.TabIndex = 8;
             this.label9.Text = "Lokasi:";
             // 
             // txtKodeBuku
             // 
-            this.txtKodeBuku.Location = new System.Drawing.Point(885, 190);
+            this.txtKodeBuku.Location = new System.Drawing.Point(787, 152);
+            this.txtKodeBuku.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtKodeBuku.Name = "txtKodeBuku";
-            this.txtKodeBuku.Size = new System.Drawing.Size(257, 26);
+            this.txtKodeBuku.Size = new System.Drawing.Size(229, 22);
             this.txtKodeBuku.TabIndex = 9;
             this.txtKodeBuku.TextChanged += new System.EventHandler(this.txtKodeBuku_TextChanged);
             // 
             // txtJudulBuku
             // 
-            this.txtJudulBuku.Location = new System.Drawing.Point(885, 244);
+            this.txtJudulBuku.Location = new System.Drawing.Point(787, 195);
+            this.txtJudulBuku.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtJudulBuku.Name = "txtJudulBuku";
-            this.txtJudulBuku.Size = new System.Drawing.Size(257, 26);
+            this.txtJudulBuku.Size = new System.Drawing.Size(229, 22);
             this.txtJudulBuku.TabIndex = 10;
             this.txtJudulBuku.TextChanged += new System.EventHandler(this.txtJudulBuku_TextChanged);
             // 
             // txtPengarang
             // 
-            this.txtPengarang.Location = new System.Drawing.Point(885, 298);
+            this.txtPengarang.Location = new System.Drawing.Point(787, 238);
+            this.txtPengarang.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPengarang.Name = "txtPengarang";
-            this.txtPengarang.Size = new System.Drawing.Size(257, 26);
+            this.txtPengarang.Size = new System.Drawing.Size(229, 22);
             this.txtPengarang.TabIndex = 11;
             this.txtPengarang.TextChanged += new System.EventHandler(this.txtPengarang_TextChanged);
             // 
             // txtPenerbit
             // 
-            this.txtPenerbit.Location = new System.Drawing.Point(885, 353);
+            this.txtPenerbit.Location = new System.Drawing.Point(787, 282);
+            this.txtPenerbit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPenerbit.Name = "txtPenerbit";
-            this.txtPenerbit.Size = new System.Drawing.Size(257, 26);
+            this.txtPenerbit.Size = new System.Drawing.Size(229, 22);
             this.txtPenerbit.TabIndex = 12;
             this.txtPenerbit.TextChanged += new System.EventHandler(this.txtPenerbit_TextChanged);
             // 
             // txtTahunTerbit
             // 
-            this.txtTahunTerbit.Location = new System.Drawing.Point(885, 408);
+            this.txtTahunTerbit.Location = new System.Drawing.Point(787, 326);
+            this.txtTahunTerbit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtTahunTerbit.Name = "txtTahunTerbit";
-            this.txtTahunTerbit.Size = new System.Drawing.Size(257, 26);
+            this.txtTahunTerbit.Size = new System.Drawing.Size(229, 22);
             this.txtTahunTerbit.TabIndex = 13;
             this.txtTahunTerbit.TextChanged += new System.EventHandler(this.txtTahunTerbit_TextChanged);
             // 
             // txtStokTersedia
             // 
-            this.txtStokTersedia.Location = new System.Drawing.Point(885, 521);
+            this.txtStokTersedia.Location = new System.Drawing.Point(787, 417);
+            this.txtStokTersedia.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtStokTersedia.Name = "txtStokTersedia";
-            this.txtStokTersedia.Size = new System.Drawing.Size(257, 26);
+            this.txtStokTersedia.Size = new System.Drawing.Size(229, 22);
             this.txtStokTersedia.TabIndex = 15;
             this.txtStokTersedia.TextChanged += new System.EventHandler(this.txtStokTersedia_TextChanged);
             // 
             // txtLokasi
             // 
-            this.txtLokasi.Location = new System.Drawing.Point(885, 583);
+            this.txtLokasi.Location = new System.Drawing.Point(787, 466);
+            this.txtLokasi.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtLokasi.Name = "txtLokasi";
-            this.txtLokasi.Size = new System.Drawing.Size(257, 26);
+            this.txtLokasi.Size = new System.Drawing.Size(229, 22);
             this.txtLokasi.TabIndex = 16;
             this.txtLokasi.TextChanged += new System.EventHandler(this.txtLokasi_TextChanged);
             // 
             // btlBatal
             // 
-            this.btlBatal.Location = new System.Drawing.Point(738, 689);
+            this.btlBatal.BackColor = System.Drawing.Color.Crimson;
+            this.btlBatal.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btlBatal.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btlBatal.Location = new System.Drawing.Point(656, 551);
+            this.btlBatal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btlBatal.Name = "btlBatal";
-            this.btlBatal.Size = new System.Drawing.Size(167, 60);
+            this.btlBatal.Size = new System.Drawing.Size(148, 48);
             this.btlBatal.TabIndex = 17;
             this.btlBatal.Text = "Batal";
-            this.btlBatal.UseVisualStyleBackColor = true;
+            this.btlBatal.UseVisualStyleBackColor = false;
             this.btlBatal.Click += new System.EventHandler(this.btlBatal_Click);
             // 
             // btlUpdateBuku
             // 
-            this.btlUpdateBuku.Location = new System.Drawing.Point(993, 689);
+            this.btlUpdateBuku.BackColor = System.Drawing.Color.ForestGreen;
+            this.btlUpdateBuku.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btlUpdateBuku.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btlUpdateBuku.Location = new System.Drawing.Point(883, 551);
+            this.btlUpdateBuku.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btlUpdateBuku.Name = "btlUpdateBuku";
-            this.btlUpdateBuku.Size = new System.Drawing.Size(167, 60);
+            this.btlUpdateBuku.Size = new System.Drawing.Size(148, 48);
             this.btlUpdateBuku.TabIndex = 18;
             this.btlUpdateBuku.Text = "Update Buku";
-            this.btlUpdateBuku.UseVisualStyleBackColor = true;
+            this.btlUpdateBuku.UseVisualStyleBackColor = false;
             this.btlUpdateBuku.Click += new System.EventHandler(this.btlUpdateBuku_Click);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(735, 472);
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(653, 378);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(72, 20);
+            this.label7.Size = new System.Drawing.Size(74, 19);
             this.label7.TabIndex = 19;
             this.label7.Text = "Kategori:";
             // 
@@ -213,17 +236,18 @@
             this.cmbKategori.Items.AddRange(new object[] {
             "Fiksi",
             "Non Fiksi"});
-            this.cmbKategori.Location = new System.Drawing.Point(885, 469);
+            this.cmbKategori.Location = new System.Drawing.Point(787, 375);
+            this.cmbKategori.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbKategori.Name = "cmbKategori";
-            this.cmbKategori.Size = new System.Drawing.Size(265, 28);
+            this.cmbKategori.Size = new System.Drawing.Size(236, 24);
             this.cmbKategori.TabIndex = 22;
             this.cmbKategori.SelectedIndexChanged += new System.EventHandler(this.cmbKategori_SelectedIndexChanged);
             // 
             // EditBuku
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1802, 834);
+            this.ClientSize = new System.Drawing.Size(1602, 667);
             this.Controls.Add(this.cmbKategori);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btlUpdateBuku);
@@ -243,6 +267,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "EditBuku";
             this.Text = "EditBuku";
             this.Load += new System.EventHandler(this.EditBuku_Load_1);
