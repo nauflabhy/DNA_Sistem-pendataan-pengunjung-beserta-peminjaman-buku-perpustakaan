@@ -195,6 +195,7 @@
             // btlBatal
             // 
             this.btlBatal.BackColor = System.Drawing.Color.Crimson;
+            this.btlBatal.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btlBatal.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btlBatal.Location = new System.Drawing.Point(656, 551);
             this.btlBatal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -208,6 +209,7 @@
             // btlUpdateBuku
             // 
             this.btlUpdateBuku.BackColor = System.Drawing.Color.ForestGreen;
+            this.btlUpdateBuku.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btlUpdateBuku.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btlUpdateBuku.Location = new System.Drawing.Point(883, 551);
             this.btlUpdateBuku.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
