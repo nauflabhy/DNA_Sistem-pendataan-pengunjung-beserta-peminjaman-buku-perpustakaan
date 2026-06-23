@@ -103,7 +103,6 @@
             this.txtCariBuku.Name = "txtCariBuku";
             this.txtCariBuku.Size = new System.Drawing.Size(514, 26);
             this.txtCariBuku.TabIndex = 5;
-            this.txtCariBuku.Text = "Cari berdasarkan kata kunci pencarian...";
             this.txtCariBuku.TextChanged += new System.EventHandler(this.txtCariBuku_TextChanged);
             // 
             // label1
@@ -120,7 +119,7 @@
             // 
             this.btnCari.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnCari.Font = new System.Drawing.Font("Times New Roman", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCari.Location = new System.Drawing.Point(817, 115);
+            this.btnCari.Location = new System.Drawing.Point(814, 109);
             this.btnCari.Name = "btnCari";
             this.btnCari.Size = new System.Drawing.Size(90, 34);
             this.btnCari.TabIndex = 7;
@@ -187,7 +186,7 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(1343, 38);
+            this.bindingNavigator1.Size = new System.Drawing.Size(1343, 33);
             this.bindingNavigator1.TabIndex = 11;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -197,7 +196,7 @@
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(34, 33);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(34, 28);
             this.bindingNavigatorAddNewItem.Text = "Add new";
             // 
             // bindingNavigatorCountItem

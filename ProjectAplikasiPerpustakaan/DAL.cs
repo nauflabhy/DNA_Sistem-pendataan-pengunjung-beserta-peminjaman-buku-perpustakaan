@@ -9,7 +9,7 @@ namespace ProjectAplikasiPerpustakaan
     public class DAL
     {
         // ✅ Ambil IP otomatis untuk deploy
-        public static string GetLocalIPAddress()
+        /* public static string GetLocalIPAddress()
         {
             string localIP = string.Empty;
             try
@@ -29,30 +29,15 @@ namespace ProjectAplikasiPerpustakaan
                 System.Windows.Forms.MessageBox.Show("Error getting IP: " + ex.Message);
             }
             return localIP;
-        }
-
-        /* public static string GetConnectionString()
-        {
-            // GANTI IP INI SAJA SETIAP KALI IP BERUBAH
-            string serverIP = "172.20.10.4";   // ← Ubah di sini
-
-            string connectionString = $"Data Source={serverIP},1433;" +
-                                      "Initial Catalog=db_perpustakaan;" +
-                                      "User ID=sa;" +
-                                      "Password=nopall946;";
-
-            return connectionString;
         } */
 
         public static string GetConnectionString()
         {
-            // ✅ MODE DEVELOPMENT — aktifkan ini sekarang
-            string connectionString = $"Data Source={GetLocalIPAddress()};Initial Catalog=db_perpustakaan;User ID=sa;Password=nopall946;";
-
-            // MODE DEPLOY — aktifkan ini nanti saat mau ujian
-            // string connectionString = $"Data Source={GetLocalIPAddress()};Initial Catalog=db_perpustakaan;User ID=sa;Password=nopall946;";
-
-            return connectionString;
+        string connectionString = $"Data Source=172.20.10.4,1433;" +
+                               "Initial Catalog=db_perpustakaan;" +
+                               "User ID=sa;" +
+                               "Password=nopall946;";
+        return connectionString;
         }
 
         SqlConnection conn = new SqlConnection(GetConnectionString());
