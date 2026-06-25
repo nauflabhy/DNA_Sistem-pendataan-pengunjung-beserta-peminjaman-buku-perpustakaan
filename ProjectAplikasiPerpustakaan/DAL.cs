@@ -40,7 +40,7 @@ namespace ProjectAplikasiPerpustakaan
                                 "User ID=sa;" +
                                 "Password=nopall946;";
          return connectionString;
-         } */
+         } */ 
 
         public static string GetConnectionString()
         {
