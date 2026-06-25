@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 
@@ -9,7 +10,8 @@ namespace ProjectAplikasiPerpustakaan
     public class DAL
     {
         // ✅ Ambil IP otomatis untuk deploy
-        /* public static string GetLocalIPAddress()
+        /*
+        public static string GetLocalIPAddress()
         {
             string localIP = string.Empty;
             try
@@ -31,13 +33,66 @@ namespace ProjectAplikasiPerpustakaan
             return localIP;
         } */
 
+        /* public static string GetConnectionString()
+         {
+         string connectionString = $"Data Source=192.168.1.19,1433;" +
+                                "Initial Catalog=db_perpustakaan;" +
+                                "User ID=sa;" +
+                                "Password=nopall946;";
+         return connectionString;
+         } */
+
         public static string GetConnectionString()
         {
-        string connectionString = $"Data Source=192.168.1.19,1433;" +
-                               "Initial Catalog=db_perpustakaan;" +
-                               "User ID=sa;" +
-                               "Password=nopall946;";
-        return connectionString;
+            try
+            {
+                // Cari config.txt di folder yang sama dengan .exe
+                string configPath = Path.Combine(
+                    AppDomain.CurrentDomain.BaseDirectory,
+                    "config.txt"
+                );
+
+                if (!File.Exists(configPath))
+                {
+                    throw new Exception("File config.txt tidak ditemukan!\nPath: " + configPath);
+                }
+
+                // Baca semua baris
+                string serverIP = "";
+                string database = "";
+                string userID = "";
+                string password = "";
+                string port = "1433";
+
+                foreach (string line in File.ReadAllLines(configPath))
+                {
+                    if (line.StartsWith("ServerIP="))
+                        serverIP = line.Replace("ServerIP=", "").Trim();
+                    else if (line.StartsWith("Database="))
+                        database = line.Replace("Database=", "").Trim();
+                    else if (line.StartsWith("UserID="))
+                        userID = line.Replace("UserID=", "").Trim();
+                    else if (line.StartsWith("Password="))
+                        password = line.Replace("Password=", "").Trim();
+                    else if (line.StartsWith("Port="))
+                        port = line.Replace("Port=", "").Trim();
+                }
+
+                string connectionString = $"Data Source={serverIP},{port};" +
+                                         $"Initial Catalog={database};" +
+                                         $"User ID={userID};" +
+                                         $"Password={password};";
+
+                return connectionString;
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(
+                    "Error membaca config: " + ex.Message,
+                    "Config Error"
+                );
+                return "";
+            }
         }
 
         SqlConnection conn = new SqlConnection(GetConnectionString());
