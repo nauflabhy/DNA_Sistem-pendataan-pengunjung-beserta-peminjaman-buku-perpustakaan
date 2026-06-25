@@ -33,7 +33,7 @@ namespace ProjectAplikasiPerpustakaan
 
         public static string GetConnectionString()
         {
-        string connectionString = $"Data Source=172.20.10.4,1433;" +
+        string connectionString = $"Data Source=192.168.1.19,1433;" +
                                "Initial Catalog=db_perpustakaan;" +
                                "User ID=sa;" +
                                "Password=nopall946;";
